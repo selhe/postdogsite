@@ -38,6 +38,11 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+TO-DO LIST:
+3. (Maybe) Create backend for comments, otherwise find 3rd party provider
+4. Polish Diary Entries for mixed media :p
+7. Add search filter in diary(?)
+10. Finish Shows
+11. Adjust footing and next button to look good
+12. Login for stuff
+13. Make contact actually link to gmail

@@ -1,0 +1,21 @@
+/*I decided to remove this because the easter egg was too scary*/
+body {
+  background: url("https://i.ibb.co/ycz369Nz/Untitled-design-3.png");
+  background-size: fit;
+  background-position: center center;
+  background-repeat: repeat;
+  font-family: Georgia, serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: red;
+}
+
+.white-text {
+  color: rgb(255, 255, 255); 
+}
+
+.red-text {
+  color: rgb(255, 0, 0); 
+}
+

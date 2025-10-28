@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro'; 
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+// 1. 🛑 FETCH ALL BLOG POSTS FOR THE NAVIGATION BAR 🛑
+const allBlogEntries = await getCollection('blog');
+
+// 2. CALCULATE THE UNIQUE LIST OF ALL GENRES (from all posts)
+const allGenres = [...new Set(
+  allBlogEntries
+    // flatMap handles the 'genres' array (plural) and flattens it
+    .flatMap(e => e.data.genres || []) 
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b));
+
+
+const { Content } = await post.render();
+
+// This is still used for the individual post's genre tags
+const postGenres = (post.data.genres || []) 
+  .sort((a, b) => a.localeCompare(b));
+
+const formatDate = (date) => {
+  const options = {
+    year:'numeric',
+    month: 'long',
+    day: "numeric"
+  };
+  return new Date(date).toLocaleDateString('en-US', options);
+}
+---
+
+<BlogLayout genres={allGenres}>
+  <article class="single-post-content">
+  </br>
+  </br>
+    <h1>{post.data.title}</h1>
+    <div class="post-meta-two">
+      Posted by 
+      <strong>{post.data.author || 'Anonymous'}</strong> on 
+      {formatDate(post.data.date)}
+    </div>
+
+    {post.data.albumCover && (
+      <div class="thumbnail-container">
+        <img
+          src={post.data.albumCover}
+          alt={`Album cover for ${post.data.title}`}
+          class="album-thumbnail"
+        />
+      </div>
+    )}
+
+    <div class="labels">
+      Labels:
+      {/* Note: Use 'postGenres' here, as this is only for the current post's tags */}
+      {postGenres.map((genre) => ( 
+        <span class="genre-tag">{genre}</span>
+      ))}
+    </div>
+
+    <hr />
+
+    <Content />
+
+  </article>
+
+</BlogLayout>

@@ -1,0 +1,85 @@
+---
+import "../styles/socials.css"; 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+// ✅ CORRECTED CODE: Combine the declarations into one line.
+const { 
+  title,       // Declares and gets the title
+  genres = []  // Declares and gets genres, defaulting to [] if not passed
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+    </head>
+  <body>
+    <header class="blog-header">
+      <h1 class="blog-title"></h1>
+    </header>
+
+    <main class="blog-layout">
+      <aside class="sidebar">
+        {/* --- STATIC NAVIGATION LINKS (Transferred from [page].astro) --- */}
+        <img
+          src="https://see.fontimg.com/api/rf5/r09p/M2Y4NjQzNmE4ODk1NGVmYzkxODFhMzIzYTdkYmQxNjIudHRm/cG9zdGRvZw/ginga.png?r=fs&h=304&w=2000&fg=000000&bg=FFFFFF&tb=1&s=152"
+          alt="postblog"
+          class="blog-logo"
+        />
+        </br>
+        
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+
+        <ul>
+          <li><a href="/socials">Links</a></li>
+        </ul>
+
+        <ul>
+          <li><a href="/contact">Email</a></li>
+        </ul>
+
+        <ul>
+          <li><a href="/shows">Shows</a></li>
+        </ul>
+
+        <h2>Blog</h2>
+        <ul>
+          <li><a href="/diary/1">Diary</a></li>
+        </ul>
+        <ul>
+          <li><a href="/blog/credits">Credits</a></li>
+        </ul>
+        
+        {/* --- DYNAMIC GENRES LIST --- */}
+        <h2>Genres</h2>
+        <ul id="genre-list">
+          {genres.map((genre) => (
+            <li>
+              {/* Ensure this links to the blog's filter route */}
+              <a href={`/blog/genre/${genre.toLowerCase().replace(/\s+/g, '-')}`} data-genre={genre}>
+                {genre}
+              </a>
+            </li>
+          ))}
+          {/* Link to the first page of the archive */}
+          <li><a href="/blog/1" data-genre="all">Show All</a></li> 
+        </ul>
+      </aside>
+
+      <section class="content-area" id="posts">
+        {/* This is where the content from the consuming page is injected */}
+        <slot />
+      </section>
+    </main>
+
+  </body>

@@ -1,0 +1,38 @@
+/*easter egg*/
+
+body {
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJdTQalcab1jkgamhniWS85hn-68xv9j22wRUJ6SLRG9g5ZU_WW5D-i05EA7JcAfkJIM&usqp=CAU");
+  background-size: fill;
+  background-position: center center;
+  background-repeat: repeat;
+  font-family: Georgia, serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.white-text {
+  color: rgb(255, 255, 255); 
+}
+
+.red-text {
+  color: rgb(255, 0, 0); 
+}
+
+.music {
+  display:none;
+}
+
+audio {
+  margin-top: 0;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 200;
+}
+
+.easter-egg {
+  display: block;   
+  margin: 30vh auto 0;      
+  width: 300px;        
+  height: auto;
+}

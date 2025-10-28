@@ -1,0 +1,103 @@
+---
+// src/pages/blog/genre/[...genre].astro
+
+import { getCollection } from 'astro:content'; 
+import BlogLayout from '../../../layouts/BlogLayout.astro'; // Or BlogLayout if you prefer
+
+export async function getStaticPaths() {
+  const allBlogEntries = await getCollection('blog');
+  
+  // 1. Get ALL unique genres from ALL blog posts
+  const uniqueGenres = [...new Set(
+    allBlogEntries
+      // ✅ Use flatMap to handle the 'genres' array and flatten it
+      .flatMap(entry => entry.data.genres || []) 
+      .filter(Boolean) // Removes any empty strings or nulls
+  )];
+
+  // If this array (uniqueGenres) is empty, no pages will be generated, causing 404s.
+  if (uniqueGenres.length === 0) {
+    console.warn("No unique genres found in the 'blog' collection. No genre pages will be generated.");
+    return []; // Return an empty array of paths
+  }
+  
+  // 2. Map each genre to a path
+  return uniqueGenres.map(genre => {
+    const slug = genre.toLowerCase().replace(/\s+/g, '-');
+    
+    // Filter logic must also use the plural field 'genres' and check for inclusion
+    const filteredPosts = allBlogEntries.filter(entry => entry.data.genres && entry.data.genres.includes(genre));
+    
+    // Sort posts by date
+    filteredPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+    return {
+      params: { genre: slug }, 
+      props: { 
+        genreName: genre,      
+        posts: filteredPosts, 
+      },
+    };
+  });
+}
+
+const { genreName, posts } = Astro.props;
+
+// Re-fetch all genres to build the sidebar navigation correctly
+const allBlogEntriesForNav = await getCollection('blog');
+const allGenres = [...new Set(
+  allBlogEntriesForNav
+    .flatMap(e => e.data.genres || []) // ✅ Use flatMap on the plural field 'genres'
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b)); // Sort alphabetically before passing
+
+const formatDate = (date) => {
+  return new Date(date).toLocaleDateString('en-US', { year:'numeric', month: 'long', day: "numeric" });
+}
+---
+
+<BlogLayout title={`postdog ⟢ ${genreName}`} genres={allGenres}>
+  <section class="content-area" id="blog-genre-list">
+    <h4>Filtering: "{genreName}"</h4>
+
+    {posts.map((post) => (
+        <article
+            data-genres={(post.data.genres || []).join(",")}
+            data-slug={post.slug}
+        >
+            <h3>
+                <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </h3>
+
+            {post.data.albumCover && (
+                <div class="thumbnail-container">
+                    <img
+                        src={post.data.albumCover}
+                        alt={`Album cover for ${post.data.title}`}
+                        class="album-thumbnail"
+                    />
+                </div>
+            )}
+            <p>{post.data.description}</p>
+
+            <div class="post-meta">
+                Posted by <strong>{post.data.author || 'Anonymous'}</strong> at
+                {formatDate(post.data.date)} |
+                {post.data.comments || 0} comments
+
+                <span class="lavels">
+                    Labels:
+                    {post.data.genres && post.data.genres.length > 0 ? post.data.genres.map(genre => (
+                        <span class="genre-tag">{genre}</span>
+                    ))
+                    : 'none'}
+                </span>
+            </div>
+        </article>
+    ))}
+    {posts.length === 0 && (
+        <p>There are currently no posts filed under the genre: **{genreName}**.</p>
+    )}
+
+  </section>
+</BlogLayout>

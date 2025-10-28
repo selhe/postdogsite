@@ -1,0 +1,281 @@
+body {
+  background: url("https://i.ibb.co/CpxSKTH4/Untitled-design-12.png");
+  background-size: fill;
+  background-position: center center;
+  background-repeat: repeat;
+  font-family: Georgia, serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: rgb(19, 10, 10);
+}
+
+.blog-layout {
+  background-color: rgb(206, 206, 206);
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  max-width: 850px;
+  margin: 2rem auto;
+  gap: 1.5rem;
+}
+
+.blog-logo {
+    max-width: 130px;
+    height: auto;
+    
+    display: block; 
+    margin: 0 auto;
+}
+
+.sidebar a {
+    display: block; 
+    padding: 0.5rem 0.75rem;
+    
+    color: #6f6f6f;
+    text-decoration: none; 
+    font-family: 'Times New Roman', serif; 
+    font-size: 0.8em;
+    font-weight: bold;
+    
+    padding: 0.25rem;
+    border-bottom: 1px solid rgba(147, 59, 255, 0.316); 
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.sidebar a:hover,
+.sidebar a:focus {
+    color: #ffffff; 
+    background-color: #16010b; 
+    text-shadow: 0 0 5px rgba(127, 0, 212, 0.8); 
+    border-bottom-color: #3f00e0; 
+}
+
+.sidebar h3 {
+    color: #4b00cc;
+    font-size: 1.3em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid #550000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sidebar h2 {
+    font-size: 1.2em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+.content-area h1 {
+    color: #000;
+    text-align: center;
+    text-shadow: 0 0 20px #59007c2a, /* First shadow for inner glow */
+                0 0 30px #8400bc71, /* Second shadow for outer glow */
+                0 0 1.5px #6a0dbb; /* Third shadow for a subtle base glow */
+    
+}
+/* ---------------------------------------------------- */
+/* SOCIAL MEDIA STYLES */
+/* ---------------------------------------------------- */
+
+.social-icons {
+    text-align: center;
+}
+
+.social-icons h2 {
+    color: #16010b;
+    border-bottom: 1px solid #b8b8b8;
+    margin-bottom: 1rem;
+    padding: 0 0 10px 0; /* Minimal vertical padding */
+    width: auto;         /* Remove fixed width */
+    margin: 0;           /* Remove margin if padding is managed by parent */
+    text-shadow: 0 0 10px rgba(50, 0, 150, 0.449); /* Moved from duplicate block */
+}
+
+.social-icons a {
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #3b22ab;
+    margin: 0 2rem 0.5rem 0;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.2s;
+    padding: 10px;
+    border: none;
+    background-color: transparent;
+    width: 30px;
+    font-size: 1.8rem;
+}
+
+.social-icons a:hover,
+.social-icons a:focus {
+    color: #e1dfe5;
+    text-shadow:
+        0 0 5px rgba(46, 0, 212, 0.8),
+        0 0 10px rgba(57, 0, 212, 0.4);
+    transform: scale(1.3);
+    background-color: transparent;
+    border: none;
+}
+
+/* ---------------------------------------------------- */
+/* VIDEO STYLING */
+/* ---------------------------------------------------- */
+.video-wrapper {
+    width: 485px; 
+    height: 315px; 
+
+    border: 30px solid transparent; 
+    border-image: url('https://www.pngkey.com/png/full/387-3874422_medium-image-fancy-png-blue-borders.png') 30 stretch;
+    /* Center the video within the frame, if needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. Style the Video */
+.video-wrapper iframe {
+    /* Ensures the video maintains its original dimensions */
+    width: 530px;
+    height: 315px;
+    display: block; 
+}
+
+/* ---------------------------------------------------- */
+/* LOGIN STYLING */
+/* ---------------------------------------------------- */
+
+@keyframes float {
+    0% {
+        /* Start position: image is at its normal vertical position */
+        transform: translateY(0); 
+    }
+    50% {
+        /* Middle point: image moves up by a small amount (e.g., 8 pixels) */
+        transform: translateY(-10px); 
+    }
+    100% {
+        /* End point: image returns to the start position */
+        transform: translateY(0); 
+    }
+}
+
+.key {
+    max-width: 70px;
+    height: auto;
+    display: block; 
+    margin: 5rem auto auto 235px;
+
+    animation-name: float;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+
+/* 1. Define the Keyframes for the 'Boiling' or 'Shedding' Effect */
+@keyframes boil-and-fall {
+    0% {
+        /* Start: Directly over the original text, fully visible */
+        opacity: 1;
+        transform: translate(100, 0) rotate(0deg);
+    }
+    10% {
+        /* Initial Jitter/Boil: Slight, quick lateral movement */
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    40% {
+        /* Peak of Movement: Start to separate and fade */
+        opacity: 0.8;
+        transform: translate(5px, -5px) rotate(-2deg) scale(1.05); 
+    }
+    100% {
+        /* End: Far below the text, completely transparent, slightly rotated */
+        opacity: 0;
+        transform: translate(5px, 50px) rotate(5deg) scale(0.9);
+    }
+}
+
+/* 2. Style the Container and the Text */
+.boiling-text {
+    /* Set up the container */
+    position: relative; /* CRITICAL: Establishes a context for the absolute pseudo-element */
+    display: inline-block; /* Wraps the container tightly around the text */
+    padding: 0 1rem;
+    /* Base text style (adjust colors/fonts to match your theme) */
+    font-size: 7em;
+    font-weight: bold;
+    color: #6900cc; /* Red base color for 'heat' */
+    overflow: hidden; /* Ensures falling particles don't affect parent container size */
+}
+
+/* 3. Create the Animated Duplicate (The "Boiling" Particle) */
+.boiling-text::before {
+    content: attr(data-text); /* Pulls the exact text content from the HTML attribute */
+    position: absolute;
+    top: 0;
+    left: 40px;
+    /* Inherit base text styling */
+    color: rgba(255, 255, 255, 0.8); /* Lighter color for steam/fizz */
+    text-shadow: 0 0 5px rgba(106, 0, 255, 0.5); /* Glow effect */
+    
+    /* Apply the animation */
+    animation: 
+        boil-and-fall 
+        1.5s          /* Duration of one fall (3 seconds) */
+        infinite    /* Loop forever */
+        cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother, more organic timing function */
+}
+
+/* 4. Create a Second Animated Duplicate (for variety and fullness) */
+.boiling-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 35px;
+    
+    /* Style slightly differently */
+    color: rgba(255, 255, 255, 0.6); 
+    
+    /* Apply the same animation with a delay to offset the timing */
+    animation: 
+        boil-and-fall 
+        3s 
+        infinite 
+        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* CRITICAL: Starts the second particle halfway through the first one's cycle */
+    animation-delay: 1s; 
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: nowrap;
+    margin: -100px auto 40px 35px;
+    filter:grayscale(1);
+}
+
+.image-link img{
+    width: 70%;
+    height: auto;
+    border-radius: 8px; 
+    transition: transform 0.3s ease;
+}
+
+.image-link:hover img {
+  transform: scale(1.05);
+}
+
+/* Optional: if you REALLY want to prevent stacking even on tiny screens */
+@media (max-width: 400px) {
+  .image-link img {
+    width: 120px; /* slightly smaller on tiny screens */
+  }
+}
+

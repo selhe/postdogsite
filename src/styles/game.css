@@ -1,0 +1,127 @@
+body {
+  background: url("https://i.ibb.co/cXLshZRk/Untitled-design-2.png");
+  background-size: 1240px 700px;
+  background-position: center top;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  font-family: "Arial Rounded MT Bold", serif;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  cursor: default;
+  background-color: #f9fbf1;
+}
+
+/* ---------------------------------------------------- */
+/* CONTAINER STYLES */
+/* ---------------------------------------------------- */
+
+.layout {
+  width: 800px;
+  position: fixed;
+  left: 50%;
+  margin-left: -240px;
+  top: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.navbox {
+  position: absolute;
+  top: 37px;
+  left: 53px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin-bottom: 2rem;
+  padding: 0.1rem;
+  width: 80px;
+}
+
+.nav {
+  text-decoration: none;
+  font-family: "Times New Roman", serif;
+  font-size: 10px;
+  background-color: #afdaeb;
+  color: black;
+  padding: 5px 10px;
+  transition: 0.2s ease;
+}
+
+.nav:hover {
+  background-color: #eeee33;
+  background-image: url("http://cbimg9.com/layouts/08/10/32284ab.jpg");
+}
+
+.content {
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 60%;
+  text-align: justify;
+  font-size: 10px;
+}
+
+.pink-text {
+  color: #f76198; 
+}
+
+marquee {
+  font-family: Georgia, serif;
+  color: #f76198;
+  font-size: 11px;
+  width: 180px;
+  display: block;
+  white-space: nowrap;
+  position: relative;
+  left: 140px;
+  top: 0px;
+}
+
+
+html, body {
+  height: 100%;
+  overflow: hidden; 
+}
+
+/* Replicates the style of .contact-container and .thankyou-container */
+.game-container-wrapper {
+  align-items: center;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7); /* Translucent background */
+  border: 1px solid #afdaeb;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+  /* Center the box */
+  left: 50%; 
+  top: 50%;
+  transform: translate(-50%, -50%); /* Centers horizontally and vertically */
+  
+  width: 600px; /* Make it wider for the game */
+  max-width: 90%;
+  padding: 2.5rem; /* More padding for a game */
+  
+  text-align: center;
+  backdrop-filter: blur(3px);
+  font-family: Georgia, serif;
+}
+
+.game-title {
+  font-size: 24px; /* Slightly larger title */
+  color: #dd2266;
+  margin-bottom: 1.5rem;
+}
+
+/* Style for the game itself (canvas, text, etc.) */
+.game-display {
+  background-color: #f9fcfd; /* Light background for the game area */
+  border: 1px solid #afdaeb;
+  padding: 10px;
+  min-height: 300px; /* Give the game space */
+  margin-bottom: 1rem;
+}
+
+/* Reuse the existing .back-link style from the contact section */
+/* You already have .back-link defined! */

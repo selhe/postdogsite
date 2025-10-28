@@ -1,0 +1,57 @@
+---
+// blog/credits.astro
+import { getCollection } from 'astro:content';
+import "../../styles/blog.css";
+// ✅ Import the layout
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+// We don't need the title prop since we will define it here
+// const { title } = Astro.props; 
+
+const allPosts = await getCollection('blog');
+
+// Calculate ALL genres across ALL posts for the sidebar navigation
+const allGenres = [...new Set(
+  allPosts
+    .flatMap(post => post.data.genres || []) // Use flatMap for the genres array
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b));
+
+const Credits = [
+  { role: "Cover Art", name: "avasobakova69@twitter", url: "https://x.com/avasobakova69" },
+  { role: "Background", name: "m0rningstar_666@instagram", url: "https://www.instagram.com/m0rningstar_666/" },
+  { role: "Website Inspo", name: "emmijane", url: "https://emmijane.createblog.com/layouts/" },
+];
+
+const title = "postdog ⟢ credits";
+---
+
+<BlogLayout title={title} genres={allGenres}>
+  <section class="content-area" id="posts">
+    <a href="/blog/hehe">
+      <img
+        src="https://pbs.twimg.com/media/Gqe2ILUXgAAvYea?format=jpg&name=4096x4096"
+        alt="hi"
+        class="blog-intro-image"
+      />
+    </a>
+    
+    <div class="credits-container">
+        <h2>Website Credits</h2>
+        <ul class="credit-list">
+            {Credits.map(item =>(
+                <li>
+                    <span class="credit-role">{item.role}:</span> 
+                    <a href={item.url} target="_blank" rel="noopener noreferrer">
+                        {item.name}
+                    </a>
+                </li>
+            ))}
+            </br>
+            <a href="../game">and you!</a>
+        </ul>
+    </div>
+    
+  </section>
+  
+  </BlogLayout>

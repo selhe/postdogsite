@@ -1,0 +1,60 @@
+---
+// src/pages/index.astro
+
+import { getCollection } from 'astro:content';
+// Ensure the path to your styles is correct
+import "../styles/blog.css"; 
+// Use the layout that contains your sidebar and genre navigation
+import BlogLayout from '../layouts/BlogLayout.astro'; 
+
+// --- Data Fetching Logic ---
+
+// 1. Fetch ALL posts to calculate the global genre list for the sidebar
+const allBlogEntries = await getCollection('blog');
+const blogGenres = [...new Set(
+  allBlogEntries
+    .flatMap(e => e.data.genres || [])
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b));
+
+// 2. Paginate the data manually for the first page only
+const pageSize = 5; // Must match the pageSize in blog/[page].astro
+const sortedPosts = allBlogEntries
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Get the posts for the first page
+const posts = sortedPosts.slice(0, pageSize);
+
+// Calculate pagination URLs for the sidebar's "Show All" link
+// Since this is page 1, the 'prev' link is null.
+const nextPage = sortedPosts.length > pageSize ? `/blog/2` : null;
+
+// --- Helper Functions ---
+
+const formatDate = (date) => {
+  const options = {
+    year:'numeric',
+    month: 'long',
+    day: "numeric"
+  };
+  return new Date(date).toLocaleDateString('en-US', options);
+}
+
+// --- Component Props ---
+const title = "postdog ⟢ shows";
+---
+
+<BlogLayout title={title} genres={blogGenres}>
+  <section class="content-area" id="posts">
+    <img
+      src={"https://64.media.tumblr.com/41a6268bd7717b65193cf30260e6408d/3e3ee5631cb7fc6c-02/s1280x1920/03a1da60b74f5d481d0afa069d607c2eaa284de0.png"}
+      alt="hi"
+      class="home-page-image"
+    />
+    <div class="site-introduction">
+        <h1>Shows</h1>
+        <p>Next gigs:</p>
+    </div>
+    
+  </section>
+</BlogLayout>

@@ -1,0 +1,115 @@
+---
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { getCollection } from 'astro:content';
+// Ensure the path to your styles is correct
+import "../styles/blog.css"; 
+import "../styles/socials.css"; 
+// Use the layout that contains your sidebar and genre navigation
+import SocialsLayout from '../layouts/SocialsLayout.astro'; 
+
+// --- Data Fetching Logic ---
+
+// 1. Fetch ALL posts to calculate the global genre list for the sidebar
+const allBlogEntries = await getCollection('blog');
+const blogGenres = [...new Set(
+  allBlogEntries
+    .flatMap(e => e.data.genres || [])
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b));
+
+// 2. Paginate the data manually for the first page only
+const pageSize = 5; // Must match the pageSize in blog/[page].astro
+const sortedPosts = allBlogEntries
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+// Get the posts for the first page
+const posts = sortedPosts.slice(0, pageSize);
+
+// Calculate pagination URLs for the sidebar's "Show All" link
+// Since this is page 1, the 'prev' link is null.
+const nextPage = sortedPosts.length > pageSize ? `/blog/2` : null;
+
+// --- Helper Functions ---
+
+const formatDate = (date) => {
+  const options = {
+    year:'numeric',
+    month: 'long',
+    day: "numeric"
+  };
+  return new Date(date).toLocaleDateString('en-US', options);
+}
+
+// --- Component Props ---
+const title = "postdog ⟢ links";
+---
+
+<SocialsLayout title={title} genres={blogGenres}>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+  </head>
+  <section class="content-area" id="posts">
+        
+    <img
+      src={"https://64.media.tumblr.com/41a6268bd7717b65193cf30260e6408d/3e3ee5631cb7fc6c-02/s1280x1920/03a1da60b74f5d481d0afa069d607c2eaa284de0.png"}
+      alt="hi"
+      class="home-page-image"
+    />
+        
+    <section class="social-icons">
+      <a href="https://postdog.bandcamp.com/" target="_blank" rel="noopener noreferrer" title="Listen on Bandcamp">
+        <i class="fab fa-bandcamp"></i>
+      </a>
+      <a href="https://open.spotify.com/track/1xV94znFxRtNgrxTzA7Qzp?si=655e663769b74d6b" target="_blank" rel="noopener noreferrer" title="Stream on Spotify">
+        <i class="fab fa-spotify"></i>
+      </a>
+      <a href="/love" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">
+        <i class="fab fa-apple"></i>
+      </a>
+      <a href="https://www.youtube.com/@postdogband" target="_blank" rel="noopener noreferrer" title="Watch on YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="https://www.instagram.com/postdogband" target="_blank" rel="noopener noreferrer" title="Follow on Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      </section>
+        
+      <div class="site-introduction">
+        <h1>Links</h1>
+        <p>hellu ^__^ meow meow meow</p>
+        <p>we are a band in rockville md</p>
+        <b>please book us</b>
+        <span class="boiling-text" data-text="PLSSSSSS">PLSSSSSSS</span>
+      </div>
+        
+      <br/>
+      <br/>
+        
+      <div class="video-wrapper">
+        <iframe 
+          width="550" 
+          height="315" 
+          src="https://www.youtube.com/embed/KHTnOyIENCs?si=HEk7EQPt_H995SGf" 
+          frameborder="0" 
+          allowfullscreen
+        ></iframe>
+      </div>
+        
+      <a href="#"> <img
+        src="https://witchfire.wiki.gg/images/Ornate_Key.png?28bb4a"
+        alt="login"
+        class="key"
+      />
+      </a>
+      <div class="image-container">
+        <a href="https://spaceinvader6.hotglue.me/?homepage" class="image-link">
+          <img src="https://64.media.tumblr.com/ee44b29767c2da7f85e559d55446ef5d/2659876c28824d37-ec/s540x810/0ee6a86778dd2370575757a8ea0f8d457fcb81ae.gif" alt="Image 1" />
+        </a>
+        <a href="https://www.youtube.com/@amity5625" class="image-link">
+          <img src="https://64.media.tumblr.com/91f74f32ef3655874fbfc5d2926bbbc6/90837f2982676ada-c6/s540x810/e76cca66154e3738e700810c60f45539bedcd597.gif" alt="Image 2" />
+        </a>
+      </div>
+    </section>  
+  </section>
+  
+</Layout>

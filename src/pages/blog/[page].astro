@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import "../../styles/blog.css";
+import BlogLayout from '../../layouts/BlogLayout.astro'; // <--- Using the layout
+
+// The title prop is no longer needed since we define the title in the layout block
+// const { title } = Astro.props; 
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection('blog');
+  
+  const sortedAllPosts = allPosts
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+    
+  return paginate(sortedAllPosts, { 
+    pageSize: 5,
+    // The params logic is correct for pagination
+    params: ({ currentPage }) => ({
+        page_number: currentPage > 1 ? String(currentPage) : undefined
+    }),
+  });
+}
+
+const { page } = Astro.props; 
+
+// ✅ Data Fetching: This is already correct! 
+// It fetches all posts and calculates the genres across the entire database.
+const allPosts = await getCollection('blog');
+const allGenres = allPosts
+  .map(post => post.data.genres || []) 
+  .flat(); 
+
+const uniqueGenres = [...new Set(allGenres)]; 
+const sortedGenres = uniqueGenres.sort((a, b) => a.localeCompare(b));
+
+const formatDate = (date) => {
+  const options = {
+    year:'numeric',
+    month: 'long',
+    day: "numeric"
+  };
+  return new Date(date).toLocaleDateString('en-US', options);
+}
+
+// Define the title for the current page
+const currentPageTitle = `postdog ${page.currentPage > 1 ? ` ⟢ page ${page.currentPage}` : ''}`;
+---
+
+<BlogLayout title={currentPageTitle} genres={sortedGenres}>
+  
+  <section class="content-area" id="posts">
+    <a href="/blog/64">
+      <img 
+        src={"https://pbs.twimg.com/media/Gqe2ILUXgAAvYea?format=jpg&name=4096x4096"} 
+        alt="hi" 
+        class="blog-intro-image"
+      />
+    </a>
+    </br>
+    
+    {page.data.map((post) => (
+      <article 
+        data-genres={(post.data.genres || []).join(",")} 
+        data-slug={post.slug}
+      >
+        <h3>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        </h3>
+
+        {post.data.albumCover && (
+          <div class="thumbnail-container">
+            <img
+              src={post.data.albumCover}
+              alt={`Album cover for ${post.data.title}`}
+              class="album-thumbnail"
+            />
+          </div>
+        )}
+        <p>{post.data.description}</p>
+        <div class="post-meta">
+          Posted by
+          <strong>{post.data.author || 'Anonymous'}</strong> on
+          {formatDate(post.data.date)} |
+          {post.data.comments || 0} comments
+          
+          <span class="labels">
+            Labels:
+            {post.data.genres && post.data.genres.length > 0 ? post.data.genres.map(genre => (
+              <span class="genre-tag">{genre}</span>
+            ))
+            : 'none'}
+          </span>
+        </div> 
+      </article>
+    ))}
+    <slot /> 
+    
+    <div class="pagination-nav">
+      {page.url.prev && (
+        <a href={page.url.prev} class="prev-link">← Previous Page</a>
+      )}
+
+      {page.url.next && (
+        <a href={page.url.next} class="next-link">Next Page →</a>
+      )}
+    </div>
+  </section>
+
+</BlogLayout>

@@ -1,0 +1,62 @@
+---
+import "../styles/contact.css";
+---
+
+<!-- Netlify Contact Form -->
+<div class="blog-layout">
+
+  <div class="contact-form" style="grid-column: 1/ 3;"> 
+    
+    <!-- 
+      FIX 2: The FORM element has NO class. 
+      In the CSS, the selector `.contact-form form` targets this inner element 
+      to apply the parchment background and shadow edges.
+    -->
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      action="/thank-you"
+    >
+      <!-- Required hidden field for Netlify -->
+      <input type="hidden" name="form-name" value="contact" />
+      <img 
+        src="https://see.fontimg.com/api/rf5/r09p/M2Y4NjQzNmE4ODk1NGVmYzkxODFhMzIzYTdkYmQxNjIudHRm/Q29udGFjdCBVcw/ginga.png?r=fs&h=304&w=2000&fg=000000&bg=FFFFFF&tb=1&s=152"
+        alt="Contact Us"
+        class="contact-image"
+        onerror="this.src='https://placehold.co/150x150/fcf6e7/4a2c13?text=Contact+Image'"
+      />
+
+      <label>
+        Name:
+        <input type="text" name="name" required />
+      </label>
+
+      <label>
+        Email:
+        <input type="email" name="email" required />
+      </label>
+      
+      <!-- Added a Subject field as it is common in contact forms -->
+      <label>
+        Subject:
+        <input type="subject" name="subject" required />
+      </label>
+
+      <label>
+        Message:
+        <textarea name="message" rows="5" required></textarea>
+      </label>
+
+      <!-- 
+        FIX 3: Button class changed to 'submit-button' 
+        to use the wax-seal styling defined in the CSS.
+        Added type="submit" for proper form submission.
+      -->
+      <button type="submit" class="submit-button">Send</button>
+    </form>
+  </div>
+  
+  <!-- FIX 4: Button class changed to 'back-button' to match CSS -->
+  <button class="back-button" onclick="history.back()" style="grid-column: 2/ 3;">Back</button>
+</div>

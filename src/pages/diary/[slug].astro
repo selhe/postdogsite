@@ -1,0 +1,55 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro'; 
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allDiaryEntries = await getCollection('diary');
+  
+  return allDiaryEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }, 
+  }));
+}
+
+const { entry } = Astro.props;
+
+// 1. Fetch the entire 'blog' collection
+const allBlogEntries = await getCollection('blog');
+
+// 2. 🛑 CRITICAL FIX: Use flatMap to handle the 'genres' array (plural) 🛑
+const blogGenres = [...new Set(
+  allBlogEntries
+    // flatMap extracts the array of genres from each post and flattens it into one list
+    .flatMap(e => e.data.genres || []) 
+    .filter(Boolean)
+)].sort((a, b) => a.localeCompare(b)); // Sort the genres alphabetically
+
+const { Content } = await entry.render();
+
+const formatDate = (date) => {
+  return new Date(date).toLocaleDateString('en-US', { year:'numeric', month: 'long', day: "numeric" });
+}
+---
+
+<BlogLayout title={entry.data.title} genres={blogGenres}> 
+  <article class="diary-entry">
+    <h1>{entry.data.title}</h1>
+    <div class="entry-meta">
+      By <strong>{entry.data.author || '???'}</strong> |
+      Mood: <strong>{entry.data.mood || 'yolo'}</strong> | 
+      Date: {formatDate(entry.data.date)}
+    </div>
+
+    <hr />
+
+    <Content />
+    
+    <section class="comments-placeholder-container">
+        <h2>Comments</h2>
+        <div class="comments-placeholder-box">
+            <p>Comment system placeholder. Actual comments will be loaded here using a service like Disqus or Giscus.</p>
+            <p>This is a static placeholder for the comment thread.</p>
+        </div>
+    </section>
+    </article>
+</BlogLayout>

@@ -1,0 +1,457 @@
+body {
+  background: url("https://i.ibb.co/jZh9ZHfV/Untitled-design-8.png");
+  background-size: fit;
+  background-position: center center;
+  background-repeat: repeat;
+  font-family: Georgia, serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: rgb(19, 10, 10);
+}
+
+/* Create the semi-transparent black overlay using the ::before pseudo-element */
+body::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.1;
+
+    /* background combined properly */
+    opacity: 0.4;
+    background: 
+        rgba(0, 0, 0, 0.608) 
+        url("https://www.pngkey.com/png/full/117-1173164_black-fade-into-white.png")
+        no-repeat center center;
+    background-size: cover; /* ensures it fills the screen */
+}
+
+.blog-layout {
+  background-color: rgb(206, 206, 206);
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  max-width: 850px;
+  margin: 2rem auto;
+  gap: 1.5rem;
+}
+
+.blog-logo {
+    max-width: 130px;
+    height: auto;
+    
+    display: block; 
+    margin: 0 auto;
+}
+
+/* ---------------------------------------------------- */
+/* NAVIGATION STYLES */
+/* ---------------------------------------------------- */
+
+.sidebar nav {
+    width: 100%; 
+    padding: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 0.05rem;
+}
+.sidebar {
+  background: #dfdfdf;
+  padding: 0.7rem;
+  border-radius: 3px;
+}
+
+.sidebar a {
+    display: block; 
+    padding: 0.5rem 0.75rem;
+    
+    color: #6f6f6f;
+    text-decoration: none; 
+    font-family: 'Times New Roman', serif; 
+    font-size: 0.8em;
+    font-weight: bold;
+    
+    padding: 0.25rem;
+    border-bottom: 1px solid rgba(255, 59, 105, 0.316); 
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.sidebar a:hover,
+.sidebar a:focus {
+    color: #ffffff; 
+    background-color: #16010b; 
+    text-shadow: 0 0 5px rgba(212, 28, 0, 0.8); 
+    border-bottom-color: #e0003f; 
+}
+
+.sidebar h3 {
+    color: #cc0000;
+    font-size: 1.3em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 2px solid #550000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sidebar h2 {
+    font-size: 1.2em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ---------------------------------------------------- */
+/* WEBSITE HOMEPAGE STYLES */
+/* ---------------------------------------------------- */
+
+.home-page-image{
+    max-width: 100%; 
+    max-height: 550px;
+    height: auto; 
+    margin: 15px 40px 0rem 7.4rem;
+    max-width: 100%;
+    max-height: 27px;
+}
+
+.site-introduction {
+    width: 465px;
+    margin-left: 25px;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #dfdfdf;
+    border: 1px solid #ccc;
+    border-radius: 1px; /* Optional: Slight rounding of corners */
+    margin-bottom: 25px; /* Add space before the content begins */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.site-introduction h1 {
+    font-family: Georgia, serif;
+    font-size: 1em; 
+    color: #16010b; /* A dark, bold color, perhaps matching your sidebar hover */
+    margin-top: 0; /* Remove default top margin */
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.site-introduction p {
+    padding: 5px 40px;
+    font-size: 0.7em;
+    line-height: 0.7em;
+    color: #555;
+    margin-bottom: 0; /* Remove default bottom margin */
+}
+
+/* Optional: Make the "Welcome!" greeting bold or accented */
+.site-introduction p strong {
+    color: #cc0000;
+}
+
+/* ---------------------------------------------------- */
+/* BLOG CONTAINER STYLES */
+/* ---------------------------------------------------- */
+
+.blog-intro-image {
+  max-width: 100%; 
+  max-height: 550px;
+  height: auto; 
+
+  display: block; 
+  margin: 25px auto 2rem auto;
+  border-radius: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 5px solid #181818;
+  box-shadow: 0 0 10px rgba(255, 0, 93, 0.6);
+}
+
+.content-area article {
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #c2c2c2; 
+    font-size: 12px;
+    width: 500px;
+}
+
+.thumbnail-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.album-thumbnail {
+    border: 1px solid #620048;
+    max-width: 250px; 
+    height: auto;
+    display: inline-block;
+}
+
+.content-area article h3 {
+    font-size: 1.7em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #bb0d42;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: underline #bb0d42;
+    text-shadow: 0 0 10px rgba(150, 0, 105, 0.449);
+}
+
+.content-area article h3 a {
+    font-size: 1.3rem;
+    text-decoration: none; 
+    color: inherit;
+}
+
+.content-area article h3:hover {
+    font-size: 1.7em;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #2d0612;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: underline #bb0d42;
+    text-shadow: 0 0 5px rgba(220, 90, 181, 0.736),
+                 0 0 2px rgba(173, 130, 160, 0.736),
+                 0 0 1px rgba(0, 0, 0, 0.736);
+}
+
+.content-area h1 {
+    color: #000;
+    text-align: center;
+    text-shadow: 0 0 20px #7c00212a, /* First shadow for inner glow */
+                0 0 30px #bc003271, /* Second shadow for outer glow */
+                0 0 1.5px #bb0d42; /* Third shadow for a subtle base glow */
+    
+}
+
+.content-area h4{
+    color: #444444;
+    font-family: "Didot", serif;
+    background-color: #bababa;
+    padding: 10px 30px;
+    width: 475px;
+}
+/* ---------------------------------------------------- */
+/* SIGNATURE BOX */
+/* ---------------------------------------------------- */
+
+.post-meta {
+  padding: 15px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 500px;
+
+  border: 0.5px solid #8b8b8b;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #555;
+  font-family: monospace;
+}
+
+.post-meta-two {
+  padding: 15px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 470px;
+
+  border: 0.5px solid #8b8b8b;
+  background-color: #f7f7f7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: #555;
+  font-family: monospace;
+}
+
+.post-meta strong {
+    color: #000;
+    font-weight: bold;
+}
+
+.post-meta .labels {
+    display: block;
+    margin-top: 8px; 
+    color: #333;
+}
+
+.post-meta .genre-tag {
+    display: inline-block;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    padding: 2px 6px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 0.85em;
+    color: #777;
+    text-transform: capitalize;
+}
+
+.post-meta .genre-tag:hover {
+    background-color: #e0e0e0;
+}
+
+.pink-text {
+  color: #bb0d42; 
+}
+
+/* ---------------------------------------------------- */
+/* DIARY CONTAINER STYLES */
+/* ---------------------------------------------------- */
+
+.diary-page {
+    background: linear-gradient(135deg, #1d2b51, #00122e);
+    color: #f0f0f0;
+}
+
+.diary-page {
+    background-color: #1a1a1a;
+    background-image: url('/path/to/texture/paper.png'); 
+    background-repeat: repeat;
+    color: #000000;
+}
+
+.diary-content-preview {
+    /* 1. SET THE BACKGROUND COLOR HERE */
+    background-color: rgba(241, 241, 241, 0.3); /* Example: Very light, slightly transparent white */
+    
+    /* 2. Optional: Add padding/margin to make it look like a distinct box */
+    padding: 15px;
+    margin-top: 10px; 
+    border-radius: 5px; 
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    
+    /* Ensure the text color contrasts with the new background */
+    color: #444444; /* (Use your desired text color here) */
+}
+
+/* ---------------------------------------------------- */
+/* COMMENTS PLACEHOLDER STYLES */
+/* ---------------------------------------------------- */
+
+.comments-placeholder-container {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #c2c2c2; /* Separates it from the post content */
+}
+
+.comments-placeholder-container h2 {
+    /* Reuse a sidebar/content heading style */
+    font-size: 1.7em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #7f005d; /* Your accent color */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.comments-placeholder-box {
+    /* Style the box to look similar to your .post-meta */
+    padding: 15px;
+    margin-top: 15px;
+    max-width: 95%; /* Adjust as needed */
+
+    border: 2px solid #8b8b8b; /* Use dashed border for a placeholder feel */
+    background-color: #fcfcfc;
+    box-shadow: 2px 2px 0px 0px #eee;
+
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: #555;
+    font-family: monospace; /* Monospace font for a distinct, system-like feel */
+}
+
+/* ---------------------------------------------------- */
+/* CREDITS CONTAINER STYLES */
+/* ---------------------------------------------------- */
+
+.credits-container {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 1px solid var(--accent-color);
+    background-color: var(--light-bg);
+}
+
+.credits-container h2 {
+    font-size: 1.2em;
+    font-family: var(--header-font);
+    margin-bottom: 0.5rem;
+}
+
+.credit-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.9em;
+}
+
+.credit-list li {
+    margin-bottom: 0.3em;
+}
+
+.credit-role {
+    font-weight: bold;
+    display: inline-block;
+    min-width: 100px;
+}
+
+.credit-list a {
+    color: var(--link-color);
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+.credit-list a:hover {
+    color: var(--hover-color);
+}
+
+/* ---------------------------------------------------- */
+/* OPENING TRANSITION */
+/* ---------------------------------------------------- */
+
+#gif-intro-overlay {
+    position: fixed; /* Keeps it locked to the viewport */
+    inset: 0;
+    width: 100%;
+    height: 100%; /* Solid background to hide content */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    background: url(https://images.steamusercontent.com/ugc/368560886688292450/89FFF0CBF93AE9249C7C5136DFF15D6E2BE87D19/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false);
+    opacity: 1; 
+    transition: opacity 2s ease-in-out;
+    transform: scale(2.5,2.5);
+    filter: hue-rotate(-20deg);
+    z-index: 9999; 
+}
+
+#gif-intro-overlay.fade-out {
+    opacity: 0;
+}
+
+#intro-gif {
+    max-width: 90%; 
+    max-height: 90%;
+    object-fit: cover; 
+
+}
+
+#main-content {
+    display: none; 
+}
