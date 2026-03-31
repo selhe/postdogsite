@@ -10,7 +10,6 @@ body {
   background-color: rgb(19, 10, 10);
 }
 
-/* Create the semi-transparent black overlay using the ::before pseudo-element */
 body::before {
     content: "";
     display: block;
@@ -21,14 +20,12 @@ body::before {
     height: 100%;
     z-index: -1;
     opacity: 0.1;
-
-    /* background combined properly */
     opacity: 0.4;
     background: 
         rgba(0, 0, 0, 0.608) 
         url("https://www.pngkey.com/png/full/117-1173164_black-fade-into-white.png")
         no-repeat center center;
-    background-size: cover; /* ensures it fills the screen */
+    background-size: cover; 
 }
 
 .blog-layout {
