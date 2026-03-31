@@ -1,10 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import "../../styles/blog.css";
-import BlogLayout from '../../layouts/BlogLayout.astro'; // <--- Using the layout
-
-// The title prop is no longer needed since we define the title in the layout block
-// const { title } = Astro.props; 
+import BlogLayout from '../../layouts/BlogLayout.astro'; 
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection('blog');
@@ -14,7 +11,6 @@ export async function getStaticPaths({ paginate }) {
     
   return paginate(sortedAllPosts, { 
     pageSize: 5,
-    // The params logic is correct for pagination
     params: ({ currentPage }) => ({
         page_number: currentPage > 1 ? String(currentPage) : undefined
     }),
@@ -23,7 +19,6 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props; 
 
-// ✅ Data Fetching: This is already correct! 
 // It fetches all posts and calculates the genres across the entire database.
 const allPosts = await getCollection('blog');
 const allGenres = allPosts

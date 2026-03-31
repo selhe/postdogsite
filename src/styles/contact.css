@@ -21,13 +21,12 @@ body::before {
     z-index: -1;
     opacity: 0.1;
 
-    /* background combined properly */
     opacity: 0.4;
     background: 
         rgba(0, 0, 0, 0.608) 
         url("https://www.pngkey.com/png/full/117-1173164_black-fade-into-white.png")
         no-repeat center center;
-    background-size: cover; /* ensures it fills the screen */
+    background-size: cover; 
 }
 
 .blog-layout {
@@ -51,57 +50,43 @@ body::before {
 /* CONTACT PAGE: ANCIENT SCROLL STYLES */
 /* ---------------------------------------------------- */
 
-/* This container acts as the Outer Border/Frame (where border-image applies) */
 .contact-form{
-    /* SCROLL FRAME (OUTER) */
-    max-width: 550px; /* Use max-width for responsiveness */
-    margin: 30px auto 50px auto; /* Center the entire block */
+    max-width: 550px;
+    margin: 30px auto 50px auto;
     
-    /* The Border Image Technique */
     border: 30px solid transparent; 
-    /* NOTE: I've replaced the blue border URL. 
-        REPLACE 'YOUR_SCROLL_FRAME_IMAGE_URL' with your actual border image.
-    */
     border-image: url("https://wallpapers.com/images/thumbnail/aged-paper-scroll-png-dqg-h0djayiwchxlrir0.webp") 80 stretch; 
     
     display: flex;
     justify-content: center;
-    align-items: center; /* Centers the inner form element */
-
-    /* Ensure the outer container is transparent so the border image shows */
+    align-items: center;
     background-color: transparent;
-    padding: 0; /* Remove padding from outer container */
+    padding: 0;
 }
 
-/* This is the inner container acting as the Scroll Paper content area */
 .contact-form form {
-    /* SCROLL PAPER LOOK (INNER) */
-    width: 450px; /* Takes the full width of the parent container */
-    padding: 40px; /* More padding for paper look */
-    
-    /* Simulate old paper texture and color using multiple backgrounds */
-    background-color: #fcf6e7; /* Base Light parchment color */
+    width: 450px; 
+    padding: 40px; 
+    background-color: #fcf6e7; 
     background-image: url("https://i.pinimg.com/736x/7c/95/02/7c95029dd31403a0413812f5c9e43d15.jpg");
     background-repeat: repeat-y;
     background-size: 100% auto;
     
-    /* Restoring Scroll Edge Effects using box-shadow */
     border: none;
     border-radius: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4), 
-                0 0 0 5px #e6d8b9, /* Inner border/edge */
-                0 0 0 8px #c9b183; /* Outer color/Scroll edge shadow */
+                0 0 0 5px #e6d8b9, 
+                0 0 0 8px #c9b183; 
     
-    /* Old-school font adjustments */
     font-family: 'Times New Roman', serif;
-    color: #4a2c13; /* Dark brown ink */
+    color: #4a2c13; 
     line-height: 1.6;
 }
 
 .contact-form h1 {
     font-family: 'Georgia', serif;
     font-size: 2em;
-    color: #7b002c; /* Aged red/maroon ink for the title */
+    color: #7b002c; 
     text-align: center;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -110,24 +95,22 @@ body::before {
     padding-bottom: 10px;
 }
 
-
-/* Form elements should look like they are written on the paper */
 .contact-form label {
     display: block;
     margin-top: 15px;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #4a2c13; /* Dark brown ink */
-    text-transform: capitalize; /* More natural look than uppercase */
+    color: #4a2c13; 
+    text-transform: capitalize; 
     font-size: 0.8em;
 }
 
 .contact-image {
     margin: 0px auto 40px; 
     display: block;
-    max-width: 250px; /* Increased size slightly for visual interest */
+    max-width: 250px; 
     height: auto; 
-    background-color: transparent; /* No background needed on paper */
+    background-color: transparent;
     border: none;
     box-shadow: none;
 }
@@ -140,10 +123,9 @@ body::before {
     width: 100%;
     padding: 10px;
     
-    /* SCROLL TEXT INPUT STYLES */
-    border: none; /* No modern borders */
-    border-bottom: 1px solid #c9b183; /* Subtle line for writing */
-    background-color: transparent; /* Makes the input blend into the paper */
+    border: none; 
+    border-bottom: 1px solid #c9b183; 
+    background-color: transparent; 
     border-radius: 0; 
     
     box-sizing: border-box; 
@@ -154,19 +136,18 @@ body::before {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-bottom-color: #7b002c; /* Aged red line on focus */
+    border-bottom-color: #7b002c; 
     outline: none;
-    box-shadow: 0 1px 0 0 #7b002c; /* Clean shadow line */
+    box-shadow: 0 1px 0 0 #7b002c; 
 }
 
 .contact-form textarea {
     resize: vertical; 
 }
 
-/* Seal Wax / Stamp Button */
 .submit-button {
-    display: block; /* Full width button looks better on the scroll */
-    margin: 30px auto 10px auto; /* Centered margin */
+    display: block; 
+    margin: 30px auto 10px auto; 
     width: 200px;
     height: 200px;
     font-family: cursive;
@@ -188,14 +169,14 @@ body::before {
     background: url("https://png.pngtree.com/png-clipart/20250514/original/pngtree-rose-wax-seal-png-collage-sticker-png-image_20967975.png");
     background-size: contain;
     box-shadow: 0 2px 5px rgba(100, 0, 0, 0.6);
-    transform: scale(1.05); /* Removed the translation for a clean look */
+    transform: scale(1.05);
 }
 
 .back-button{
     background-color: #000;
     font-size: 1rem;
     color: #fcf6e7;
-    border-radius: 10%;/* This was incorrect, leaving it as-is for now but needs fixing */
+    border-radius: 10%;
     height: 30px;
     width: 280px;
     font-family: 'Times New Roman', serif;

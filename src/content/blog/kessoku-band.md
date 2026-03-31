@@ -6,7 +6,6 @@ date: 2025-10-23
 author: "kitchy"
 comments: 1
 albumCover: "https://upload.wikimedia.org/wikipedia/en/3/3e/Kessoku_Band_album_cover.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # >_<

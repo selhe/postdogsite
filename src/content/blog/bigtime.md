@@ -6,7 +6,6 @@ date: 2025-10-26
 author: "taytaillimani"
 comments: 1
 albumCover: "https://tastyrecords.co.uk/wp-content/uploads/2025/05/CS1087673-01A-BIG.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # southlondon postpunk duo

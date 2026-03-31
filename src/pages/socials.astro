@@ -1,15 +1,12 @@
 ---
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { getCollection } from 'astro:content';
-// Ensure the path to your styles is correct
 import "../styles/blog.css"; 
 import "../styles/socials.css"; 
-// Use the layout that contains your sidebar and genre navigation
 import SocialsLayout from '../layouts/SocialsLayout.astro'; 
 
 // --- Data Fetching Logic ---
 
-// 1. Fetch ALL posts to calculate the global genre list for the sidebar
 const allBlogEntries = await getCollection('blog');
 const blogGenres = [...new Set(
   allBlogEntries
@@ -17,16 +14,13 @@ const blogGenres = [...new Set(
     .filter(Boolean)
 )].sort((a, b) => a.localeCompare(b));
 
-// 2. Paginate the data manually for the first page only
-const pageSize = 5; // Must match the pageSize in blog/[page].astro
+const pageSize = 5; 
 const sortedPosts = allBlogEntries
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-// Get the posts for the first page
 const posts = sortedPosts.slice(0, pageSize);
 
-// Calculate pagination URLs for the sidebar's "Show All" link
-// Since this is page 1, the 'prev' link is null.
+
 const nextPage = sortedPosts.length > pageSize ? `/blog/2` : null;
 
 // --- Helper Functions ---
@@ -55,32 +49,23 @@ const title = "postdog ⟢ links";
       alt="hi"
       class="home-page-image"
     />
+
         
-    <section class="social-icons">
-      <a href="https://postdog.bandcamp.com/" target="_blank" rel="noopener noreferrer" title="Listen on Bandcamp">
-        <i class="fab fa-bandcamp"></i>
-      </a>
-      <a href="https://open.spotify.com/track/1xV94znFxRtNgrxTzA7Qzp?si=655e663769b74d6b" target="_blank" rel="noopener noreferrer" title="Stream on Spotify">
-        <i class="fab fa-spotify"></i>
-      </a>
-      <a href="/love" target="_blank" rel="noopener noreferrer" title="Listen on Apple Music">
-        <i class="fab fa-apple"></i>
-      </a>
-      <a href="https://www.youtube.com/@postdogband" target="_blank" rel="noopener noreferrer" title="Watch on YouTube">
-        <i class="fab fa-youtube"></i>
-      </a>
-      <a href="https://www.instagram.com/postdogband" target="_blank" rel="noopener noreferrer" title="Follow on Instagram">
-        <i class="fab fa-instagram"></i>
-      </a>
-      </section>
-        
-      <div class="site-introduction">
-        <h1>Links</h1>
-        <p>hellu ^__^ meow meow meow</p>
-        <p>we are a band in rockville md</p>
-        <b>please book us</b>
-        <span class="boiling-text" data-text="PLSSSSSS">PLSSSSSSS</span>
-      </div>
+    <div class="site-introduction">
+      <h1>Love -w-</h1>
+
+      <p><i>cool music featuring</i></p>
+      <br />
+
+      <p>⟡ <b>liz</b> — cutest youtuber ever — <a href="https://www.youtube.com/@amity5625" target="_blank">channel</a></p>
+      <p>⟡ <b>beck</b> — beck — <a href="" target="https://spaceinvader6.hotglue.me/?homepage">blog</a></p>
+      <p>⟡ <b>guttered</b> — dc shoegazers — <a href="https://open.spotify.com/artist/068knggUyqW4ju8NrrMjxY?si=imspfoOoQROzgB_F9_87NA" target="_blank">artist</a></p>
+      <p>⟡ <b>Earfdeer</b> — webcore hyperpop janglejangle — <a href="https://www.instagram.com/earf_dear34/" target="_blank">artist</a></p>
+      <p>⟡ <b>marianna</b> — hype af!</p>
+
+      <span class="boiling-text" data-text="PLSSSSSS"></span>
+    </div>
+
         
       <br/>
       <br/>
@@ -89,26 +74,20 @@ const title = "postdog ⟢ links";
         <iframe 
           width="550" 
           height="315" 
-          src="https://www.youtube.com/embed/KHTnOyIENCs?si=HEk7EQPt_H995SGf" 
+          src="https://www.youtube.com/embed/DE80HXASQDg?si=jqPBssz9iqOv9FMX" 
           frameborder="0" 
           allowfullscreen
         ></iframe>
       </div>
         
-      <a href="#"> <img
-        src="https://witchfire.wiki.gg/images/Ornate_Key.png?28bb4a"
+      <a href="login"> <img
+        src="https://bg3.wiki/w/images/thumb/f/f2/Scalpel_Faded.png/300px-Scalpel_Faded.png"
         alt="login"
         class="key"
       />
       </a>
-      <div class="image-container">
-        <a href="https://spaceinvader6.hotglue.me/?homepage" class="image-link">
-          <img src="https://64.media.tumblr.com/ee44b29767c2da7f85e559d55446ef5d/2659876c28824d37-ec/s540x810/0ee6a86778dd2370575757a8ea0f8d457fcb81ae.gif" alt="Image 1" />
-        </a>
-        <a href="https://www.youtube.com/@amity5625" class="image-link">
-          <img src="https://64.media.tumblr.com/91f74f32ef3655874fbfc5d2926bbbc6/90837f2982676ada-c6/s540x810/e76cca66154e3738e700810c60f45539bedcd597.gif" alt="Image 2" />
-        </a>
-      </div>
+      <p>  </p>
+      <p>   </p>
     </section>  
   </section>
   

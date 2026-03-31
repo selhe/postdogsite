@@ -6,7 +6,6 @@ date: 2025-10-21
 author: "w1ckedR4zor"
 comments: 1
 albumCover: "https://e.snmc.io/i/600/w/44c79307a4d80484eca3205d4c3a3a31/12812350/evileuie-%E8%A1%80%E3%83%BB%E4%B8%8D%E5%8F%AF%E4%BE%B5-Cover-Art.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # cool find

@@ -6,7 +6,6 @@ date: 2025-10-26
 author: "kitchy"
 comments: 1
 albumCover: "https://saddle-creek.com/cdn/shop/products/LBJ-365_1024RGB_1024x.jpg?v=1677094029"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # freak!!

@@ -1,7 +1,12 @@
 ---
-title: "entry 3"
-author: "w1ckedR4zor"
-date: 2025-10-23
-mood: ":)"
+title: "entry 4"
+author: "postdog"
+date: 2025-10-26
+mood: "cool!"
 ---
-[:)](../IHATEYOU)
+<video width="320" height="240" controls>
+  <source src="/videos/band1.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+practice 10.26.25

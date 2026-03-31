@@ -6,7 +6,6 @@ date: 2025-10-21
 author: "sel"
 comments: 1
 albumCover: "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/93/05/2e/93052e65-94c3-d1e0-36ac-e733cc13a2df/artwork.jpg/1200x630bb.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # My First Post

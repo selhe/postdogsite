@@ -1,6 +1,6 @@
 body {
-  background: url("https://i.ibb.co/CpxSKTH4/Untitled-design-12.png");
-  background-size: fill;
+  background: url("https://i.ibb.co/WrN0tHk/Grunge-aesthetic-wallpaper.jpg");
+  background-size: contain;
   background-position: center center;
   background-repeat: repeat;
   font-family: Georgia, serif;
@@ -9,6 +9,24 @@ body {
   color: #333;
   background-color: rgb(19, 10, 10);
 }
+
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.65); 
+}
+body::after{
+  content:"";
+  position:fixed; inset:0;
+  pointer-events:none;
+  background-image:url(https://images.pexels.com/photos/18541809/pexels-photo-18541809.jpeg?_gl=1*16adlkb*_ga*MjAyMjQzNzk4My4xNzcwMTgwOTk3*_ga_8JE65Q40S6*czE3NzAxODA5OTckbzEkZzEkdDE3NzAxODEwNDMkajE0JGwwJGgw);
+  opacity:.12;
+  mix-blend-mode: overlay;
+}
+.site-introduction p { line-height: 1.7; }
+.site-introduction a { text-decoration: underline; }
+.site-introduction a:hover { filter: brightness(1.2); }
 
 .blog-layout {
   background-color: rgb(206, 206, 206);
@@ -74,9 +92,9 @@ body {
 .content-area h1 {
     color: #000;
     text-align: center;
-    text-shadow: 0 0 20px #59007c2a, /* First shadow for inner glow */
-                0 0 30px #8400bc71, /* Second shadow for outer glow */
-                0 0 1.5px #6a0dbb; /* Third shadow for a subtle base glow */
+    text-shadow: 0 0 20px #e9e9e92a, 
+                0 0 30px #84549971, 
+                0 0 1.5px #b86fc7;
     
 }
 /* ---------------------------------------------------- */
@@ -91,10 +109,10 @@ body {
     color: #16010b;
     border-bottom: 1px solid #b8b8b8;
     margin-bottom: 1rem;
-    padding: 0 0 10px 0; /* Minimal vertical padding */
-    width: auto;         /* Remove fixed width */
-    margin: 0;           /* Remove margin if padding is managed by parent */
-    text-shadow: 0 0 10px rgba(50, 0, 150, 0.449); /* Moved from duplicate block */
+    padding: 0 0 10px 0; 
+    width: auto;     
+    margin: 0;       
+    text-shadow: 0 0 10px rgba(50, 0, 150, 0.449); 
 }
 
 .social-icons a {
@@ -124,21 +142,28 @@ body {
 /* ---------------------------------------------------- */
 /* VIDEO STYLING */
 /* ---------------------------------------------------- */
-.video-wrapper {
-    width: 485px; 
-    height: 315px; 
 
-    border: 30px solid transparent; 
-    border-image: url('https://www.pngkey.com/png/full/387-3874422_medium-image-fancy-png-blue-borders.png') 30 stretch;
-    /* Center the video within the frame, if needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.featured{
+  padding:18px;
+  border:1px dashed rgba(255,255,255,.25);
+  border-radius:18px;
+  background: rgba(0,0,0,.35);
 }
 
-/* 2. Style the Video */
+.video-wrapper {
+    width: 490px; 
+    height: 315px; 
+    display: flex;
+    justify-content: center;
+    align-items: 0;
+    padding:14px;
+    background: rgba(0,0,0,.55);
+    border-radius:16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    margin-left: 20px; 
+}
+
 .video-wrapper iframe {
-    /* Ensures the video maintains its original dimensions */
     width: 530px;
     height: 315px;
     display: block; 
@@ -150,15 +175,12 @@ body {
 
 @keyframes float {
     0% {
-        /* Start position: image is at its normal vertical position */
         transform: translateY(0); 
     }
     50% {
-        /* Middle point: image moves up by a small amount (e.g., 8 pixels) */
         transform: translateY(-10px); 
     }
     100% {
-        /* End point: image returns to the start position */
         transform: translateY(0); 
     }
 }
@@ -176,78 +198,63 @@ body {
 }
 
 
-/* 1. Define the Keyframes for the 'Boiling' or 'Shedding' Effect */
 @keyframes boil-and-fall {
     0% {
-        /* Start: Directly over the original text, fully visible */
         opacity: 1;
         transform: translate(100, 0) rotate(0deg);
     }
     10% {
-        /* Initial Jitter/Boil: Slight, quick lateral movement */
         transform: translate(1px, -1px) rotate(1deg);
     }
     40% {
-        /* Peak of Movement: Start to separate and fade */
         opacity: 0.8;
         transform: translate(5px, -5px) rotate(-2deg) scale(1.05); 
     }
     100% {
-        /* End: Far below the text, completely transparent, slightly rotated */
         opacity: 0;
         transform: translate(5px, 50px) rotate(5deg) scale(0.9);
     }
 }
 
-/* 2. Style the Container and the Text */
 .boiling-text {
-    /* Set up the container */
-    position: relative; /* CRITICAL: Establishes a context for the absolute pseudo-element */
-    display: inline-block; /* Wraps the container tightly around the text */
+    position: relative; 
+    display: inline-block; 
     padding: 0 1rem;
-    /* Base text style (adjust colors/fonts to match your theme) */
     font-size: 7em;
     font-weight: bold;
-    color: #6900cc; /* Red base color for 'heat' */
-    overflow: hidden; /* Ensures falling particles don't affect parent container size */
+    color: #6900cc;
+    overflow: hidden; 
 }
 
-/* 3. Create the Animated Duplicate (The "Boiling" Particle) */
 .boiling-text::before {
-    content: attr(data-text); /* Pulls the exact text content from the HTML attribute */
+    content: attr(data-text); 
     position: absolute;
     top: 0;
     left: 40px;
-    /* Inherit base text styling */
-    color: rgba(255, 255, 255, 0.8); /* Lighter color for steam/fizz */
-    text-shadow: 0 0 5px rgba(106, 0, 255, 0.5); /* Glow effect */
+    color: rgba(255, 255, 255, 0.8); 
+    text-shadow: 0 0 5px rgba(106, 0, 255, 0.5); 
     
-    /* Apply the animation */
     animation: 
         boil-and-fall 
-        1.5s          /* Duration of one fall (3 seconds) */
-        infinite    /* Loop forever */
-        cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother, more organic timing function */
+        1.5s         
+        infinite 
+        cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 4. Create a Second Animated Duplicate (for variety and fullness) */
 .boiling-text::after {
     content: attr(data-text);
     position: absolute;
     top: 0;
     left: 35px;
     
-    /* Style slightly differently */
     color: rgba(255, 255, 255, 0.6); 
     
-    /* Apply the same animation with a delay to offset the timing */
     animation: 
         boil-and-fall 
         3s 
         infinite 
         cubic-bezier(0.25, 0.46, 0.45, 0.94);
     
-    /* CRITICAL: Starts the second particle halfway through the first one's cycle */
     animation-delay: 1s; 
 }
 
@@ -272,10 +279,9 @@ body {
   transform: scale(1.05);
 }
 
-/* Optional: if you REALLY want to prevent stacking even on tiny screens */
 @media (max-width: 400px) {
   .image-link img {
-    width: 120px; /* slightly smaller on tiny screens */
+    width: 120px; 
   }
 }
 

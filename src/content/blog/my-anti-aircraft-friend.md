@@ -6,7 +6,6 @@ date: 2025-10-21
 author: "postdog"
 comments: 9
 albumCover: "https://st.diskunion.net/images/jacket/1008911008.jpg"
-layout: "../../layouts/PostLayout.astro"
 ---
 
 # this is for the zoomers

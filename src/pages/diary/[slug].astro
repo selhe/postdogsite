@@ -13,16 +13,13 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 
-// 1. Fetch the entire 'blog' collection
 const allBlogEntries = await getCollection('blog');
 
-// 2. 🛑 CRITICAL FIX: Use flatMap to handle the 'genres' array (plural) 🛑
 const blogGenres = [...new Set(
   allBlogEntries
-    // flatMap extracts the array of genres from each post and flattens it into one list
     .flatMap(e => e.data.genres || []) 
     .filter(Boolean)
-)].sort((a, b) => a.localeCompare(b)); // Sort the genres alphabetically
+)].sort((a, b) => a.localeCompare(b)); 
 
 const { Content } = await entry.render();
 

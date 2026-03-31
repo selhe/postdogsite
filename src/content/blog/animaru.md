@@ -7,7 +7,6 @@ date: 2025-10-21
 author: "postdog"
 comments: 1
 albumCover: "https://f4.bcbits.com/img/a3543886199_14.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # clown music

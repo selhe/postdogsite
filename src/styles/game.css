@@ -86,22 +86,20 @@ html, body {
   overflow: hidden; 
 }
 
-/* Replicates the style of .contact-container and .thankyou-container */
 .game-container-wrapper {
   align-items: center;
   position: absolute;
-  background: rgba(255, 255, 255, 0.7); /* Translucent background */
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid #afdaeb;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
-  /* Center the box */
   left: 50%; 
   top: 50%;
-  transform: translate(-50%, -50%); /* Centers horizontally and vertically */
+  transform: translate(-50%, -50%); 
   
-  width: 600px; /* Make it wider for the game */
+  width: 600px; 
   max-width: 90%;
-  padding: 2.5rem; /* More padding for a game */
+  padding: 2.5rem; 
   
   text-align: center;
   backdrop-filter: blur(3px);
@@ -109,19 +107,17 @@ html, body {
 }
 
 .game-title {
-  font-size: 24px; /* Slightly larger title */
+  font-size: 24px;
   color: #dd2266;
   margin-bottom: 1.5rem;
 }
 
-/* Style for the game itself (canvas, text, etc.) */
 .game-display {
-  background-color: #f9fcfd; /* Light background for the game area */
+  background-color: #f9fcfd;
   border: 1px solid #afdaeb;
   padding: 10px;
-  min-height: 300px; /* Give the game space */
+  min-height: 300px; 
   margin-bottom: 1rem;
 }
 
-/* Reuse the existing .back-link style from the contact section */
-/* You already have .back-link defined! */
+

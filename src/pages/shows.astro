@@ -1,41 +1,32 @@
 ---
-// src/pages/index.astro
-
 import { getCollection } from 'astro:content';
-// Ensure the path to your styles is correct
 import "../styles/blog.css"; 
-// Use the layout that contains your sidebar and genre navigation
 import BlogLayout from '../layouts/BlogLayout.astro'; 
 
-// --- Data Fetching Logic ---
-
-// 1. Fetch ALL posts to calculate the global genre list for the sidebar
-const allBlogEntries = await getCollection('blog');
-const blogGenres = [...new Set(
-  allBlogEntries
-    .flatMap(e => e.data.genres || [])
+const allShowEntries = await getCollection('shows');
+console.log(`Found ${allShowEntries.length} show entries.`);
+const bands = [...new Set(
+  allShowEntries
+    .flatMap(e => e.data.bands || [])
     .filter(Boolean)
 )].sort((a, b) => a.localeCompare(b));
 
-// 2. Paginate the data manually for the first page only
-const pageSize = 5; // Must match the pageSize in blog/[page].astro
-const sortedPosts = allBlogEntries
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const pageSize = 5; 
 
-// Get the posts for the first page
-const posts = sortedPosts.slice(0, pageSize);
+const sortedShows = allShowEntries
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
 
-// Calculate pagination URLs for the sidebar's "Show All" link
-// Since this is page 1, the 'prev' link is null.
-const nextPage = sortedPosts.length > pageSize ? `/blog/2` : null;
+const shows = sortedShows.slice(0, pageSize);
+
+const nextPage = sortedShows.length > pageSize ? `/shows/2` : null;
 
 // --- Helper Functions ---
 
 const formatDate = (date) => {
   const options = {
-    year:'numeric',
-    month: 'long',
-    day: "numeric"
+    weekday: 'short',
+    month: 'short', 
+    day: "numeric" 
   };
   return new Date(date).toLocaleDateString('en-US', options);
 }
@@ -44,17 +35,68 @@ const formatDate = (date) => {
 const title = "postdog ⟢ shows";
 ---
 
-<BlogLayout title={title} genres={blogGenres}>
-  <section class="content-area" id="posts">
+<BlogLayout title={title} genres={bands}> {/* */}
+  <section class="content-area" id="shows-list-section">
     <img
       src={"https://64.media.tumblr.com/41a6268bd7717b65193cf30260e6408d/3e3ee5631cb7fc6c-02/s1280x1920/03a1da60b74f5d481d0afa069d607c2eaa284de0.png"}
-      alt="hi"
-      class="home-page-image"
+      alt="Band promotional image"
+      class="home-page-image rounded-xl shadow-lg"
     />
-    <div class="site-introduction">
-        <h1>Shows</h1>
-        <p>Next gigs:</p>
+    
+    <div class="site-introduction mt-12 mb-8">
+        <h1 class="text-5xl font-extrabold text-gray-900 tracking-tight">Upcoming Gigs</h1>
+        <p class="text-xl text-gray-600 mt-2">Catch us live at these dates:</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        {shows.map((entry) => (
+            <a 
+                href={`/shows/${entry.slug}/`} 
+                class="block bg-white border border-gray-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+                aria-label={`Details for show at ${entry.data.title}`}
+            >
+                <div class="flex items-start space-x-4">
+                    
+                    <div class="flex flex-col items-center justify-center text-center w-20 h-20 bg-indigo-500 text-white rounded-lg flex-shrink-0">
+                        <span class="text-xs uppercase font-medium">
+                            {/* Display the short month name */}
+                            {new Date(entry.data.date).toLocaleDateString('en-US', { month: 'short' })}
+                        </span>
+                        <span class="text-3xl font-bold leading-none">
+                            {/* Display the day number */}
+                            {new Date(entry.data.date).toLocaleDateString('en-US', { day: 'numeric' })}
+                        </span>
+                    </div>
+
+                    <div class="flex-grow">
+                        <h2 class="text-2xl font-bold text-gray-800 leading-snug">
+                            {entry.data.title || "TBA Venue Name"}
+                        </h2>
+                        {/* Use venue/city data instead of old 'genres' field */}
+                        <p class="text-sm text-gray-500 mt-1">
+                            {entry.data.venue || 'Unknown Venue'} &bull; {entry.data.city || 'Unknown City'}
+                        </p>
+                        <button class="mt-3 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition duration-150">
+                            Get Tickets →
+                        </button>
+                    </div>
+
+                </div>
+            </a>
+        ))}
+
+        {shows.length === 0 && (
+            <p>We're currently planning our next tour. Check back soon!</p>
+        )}
     </div>
     
   </section>
+
+  <div class="pagination-links mt-10">
+    {nextPage && (
+      <a href={nextPage} class="text-indigo-600 hover:text-indigo-800 font-semibold text-lg">
+        View Past Shows →
+      </a>
+    )}
+  </div>
 </BlogLayout>

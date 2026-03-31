@@ -6,7 +6,6 @@ date: 2025-10-21
 author: "lcs"
 comments: 1
 albumCover: "https://f4.bcbits.com/img/a3094995135_16.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # My First Post

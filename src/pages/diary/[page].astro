@@ -2,32 +2,25 @@
 import { getCollection } from 'astro:content';
 import BlogLayout from '../../layouts/BlogLayout.astro';
 
-// 1. MODIFIED getStaticPaths function
 export async function getStaticPaths({ paginate }) {
   const allEntries = await getCollection('diary');
   
-  // Create an array of promises to fetch and render the content for ALL posts
   const entriesWithContentPromises = allEntries.map(async (entry) => {
-    // Await the render function to get the Content component
     const { Content } = await entry.render();
     
-    // Return the original entry data PLUS the Content component itself
     return { ...entry, Content }; 
   });
 
-  // Await ALL the rendering promises to resolve
   const entriesWithContent = await Promise.all(entriesWithContentPromises);
 
   const sortedEntries = entriesWithContent
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
     
-  // Pass the enriched data (including Content) to the paginate function
   return paginate(sortedEntries, { 
     pageSize: 10,
   });
 }
 
-// 2. Component Setup
 const { page } = Astro.props;
 
 const allBlogPosts = await getCollection('blog');
@@ -53,7 +46,6 @@ const formatDate = (date) => {
       class="home-page-image"
     />
 
-    <h1>Diary (Page {page.currentPage})</h1>
     
     {page.data.map((entry) => (
         <article class="diary-summary">

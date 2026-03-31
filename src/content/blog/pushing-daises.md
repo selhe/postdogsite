@@ -6,7 +6,6 @@ date: 2025-10-21
 author: "postdog"
 comments: 1
 albumCover: "https://e.snmc.io/i/600/w/0d93c492db2b84c9dcf669c7d42bca12/9412672/julie-pushing-daisies-Cover-Art.jpg"
-layout: "../../layouts/BlogLayout.astro"
 ---
 
 # My First Post

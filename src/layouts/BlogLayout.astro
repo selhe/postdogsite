@@ -1,9 +1,8 @@
 ---
 import "../styles/blog.css"; 
-// ✅ CORRECTED CODE: Combine the declarations into one line.
 const { 
-  title,       // Declares and gets the title
-  genres = []  // Declares and gets genres, defaulting to [] if not passed
+  title,
+  genres = []  
 } = Astro.props;
 ---
 
@@ -19,7 +18,7 @@ const {
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
-    </head>
+  </head>
   <body>
     <header class="blog-header">
       <h1 class="blog-title"></h1>
@@ -40,27 +39,19 @@ const {
         </ul>
 
         <ul>
-          <li><a href="/socials">Links</a></li>
-        </ul>
-
-        <ul>
-          <li><a href="/contact">Email</a></li>
-        </ul>
-
-        <ul>
           <li><a href="/shows">Shows</a></li>
         </ul>
 
-        <h2>Blog</h2>
+        <ul>
+          <li><a href="/socials">Our Friends</a></li>
+        </ul>
+
         <ul>
           <li><a href="/diary/1">Diary</a></li>
         </ul>
-        <ul>
-          <li><a href="/blog/credits">Credits</a></li>
-        </ul>
         
         {/* --- DYNAMIC GENRES LIST --- */}
-        <h2>Genres</h2>
+        <h2><a href="/blog/1">:3</a></h2>
         <ul id="genre-list">
           {genres.map((genre) => (
             <li>

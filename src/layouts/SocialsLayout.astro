@@ -1,10 +1,9 @@
 ---
 import "../styles/socials.css"; 
 import "@fortawesome/fontawesome-free/css/all.min.css";
-// ✅ CORRECTED CODE: Combine the declarations into one line.
 const { 
-  title,       // Declares and gets the title
-  genres = []  // Declares and gets genres, defaulting to [] if not passed
+  title,      
+  genres = []  
 } = Astro.props;
 ---
 
@@ -41,27 +40,19 @@ const {
         </ul>
 
         <ul>
-          <li><a href="/socials">Links</a></li>
-        </ul>
-
-        <ul>
-          <li><a href="/contact">Email</a></li>
-        </ul>
-
-        <ul>
           <li><a href="/shows">Shows</a></li>
         </ul>
 
-        <h2>Blog</h2>
+        <ul>
+          <li><a href="/socials">Our Friends</a></li>
+        </ul>
+
         <ul>
           <li><a href="/diary/1">Diary</a></li>
         </ul>
-        <ul>
-          <li><a href="/blog/credits">Credits</a></li>
-        </ul>
         
         {/* --- DYNAMIC GENRES LIST --- */}
-        <h2>Genres</h2>
+        <h2>:3</h2>
         <ul id="genre-list">
           {genres.map((genre) => (
             <li>

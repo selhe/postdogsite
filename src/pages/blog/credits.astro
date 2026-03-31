@@ -1,19 +1,13 @@
 ---
-// blog/credits.astro
 import { getCollection } from 'astro:content';
 import "../../styles/blog.css";
-// ✅ Import the layout
 import BlogLayout from '../../layouts/BlogLayout.astro';
-
-// We don't need the title prop since we will define it here
-// const { title } = Astro.props; 
 
 const allPosts = await getCollection('blog');
 
-// Calculate ALL genres across ALL posts for the sidebar navigation
 const allGenres = [...new Set(
   allPosts
-    .flatMap(post => post.data.genres || []) // Use flatMap for the genres array
+    .flatMap(post => post.data.genres || []) 
     .filter(Boolean)
 )].sort((a, b) => a.localeCompare(b));
 

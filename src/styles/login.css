@@ -1,0 +1,106 @@
+<style>
+  :root {
+    --sh-rust: #3d2b1f;
+    --sh-blood: #2b0a0a;
+    --sh-fog: #8c8c8c;
+    --sh-text: #bdae93;
+  }
+
+  .fog-wrapper {
+    background: #050505;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  /* The "Film Grain" Effect */
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    opacity: 0.15;
+    pointer-events: none;
+    background-image: url("https://media.giphy.com/media/oEI9uWUqnW3FePyOM7/giphy.gif");
+  }
+
+  .login-container {
+    background: rgba(20, 20, 20, 0.9);
+    padding: 3rem;
+    border: 1px solid var(--sh-rust);
+    box-shadow: 0 0 50px rgba(0,0,0,1), inset 0 0 20px #000;
+    position: relative;
+    z-index: 20;
+    filter: sepia(0.5) contrast(1.2) brightness(0.8);
+    animation: flicker 4s infinite;
+  }
+
+  .glitch-text {
+    color: var(--sh-text);
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px var(--sh-blood);
+  }
+
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    color: var(--sh-rust);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--sh-rust);
+    color: #fff;
+    width: 100%;
+    padding: 0.5rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  input:focus {
+    border-color: var(--sh-blood);
+    background: rgba(43, 10, 10, 0.1);
+  }
+
+  .submit-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--sh-rust);
+    color: var(--sh-text);
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: all 0.5s;
+  }
+
+  .submit-btn:hover {
+    background: var(--sh-blood);
+    color: #fff;
+    letter-spacing: 0.2rem;
+  }
+
+  .form-footer {
+    margin-top: 2rem;
+    font-size: 0.6rem;
+    color: #444;
+    text-align: center;
+  }
+
+  /* Animations */
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; filter: brightness(1); }
+    20%, 24%, 55% { opacity: 0.8; filter: brightness(0.5) contrast(2); }
+  }
+</style>

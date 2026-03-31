@@ -45,3 +45,11 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify({ error: "Failed to send message" }), { status: 500 });
   }
 };
+
+export const GET = ({ request }) => {
+    // Return a 405 status if this endpoint should not be accessed directly
+    return new Response(JSON.stringify({ 
+        error: "Method Not Allowed",
+        message: "This endpoint only accepts POST requests for form submission."
+    }), { status: 405 });
+}
